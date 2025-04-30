@@ -26,6 +26,7 @@ logs/
 
 # Testing
 coverage/
+test.yaml
 
 # TypeScript
 *.tsbuildinfo
