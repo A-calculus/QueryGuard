@@ -1,0 +1,201 @@
+agents:
+  - name: Signal Agent
+    description: |
+      The Signal Agent retrieves data on trending topics and assets, including mindshare and sentiment metrics. It helps users understand market trends and the performance of various assets over time.
+    tools:
+      - name: Get Topics
+        parameters:
+          - sort: 
+              type: string
+              description: Sorting criteria for topics (options: "trending", "new", "top")
+          - asset_ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to filter topics
+          - page: 
+              type: integer
+              description: Page number for pagination
+              default: 1
+          - limit: 
+              type: integer
+              description: Number of results per page
+              default: 20
+
+      - name: Get Historical Data
+        parameters:
+          - asset_ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to retrieve historical data
+          - start_date: 
+              type: string
+              description: Start date for the historical data range (YYYY-MM-DD)
+          - end_date: 
+              type: string
+              description: End date for the historical data range (YYYY-MM-DD)
+
+      - name: Get Asset Details
+        parameters:
+          - asset_id: 
+              type: string
+              description: ID of the asset to retrieve details
+
+      - name: Get Mindshare Data
+        parameters:
+          - asset_id: 
+              type: string
+              description: ID of the asset for mindshare analysis
+          - time_range: 
+              type: string
+              description: Time range for the mindshare data (e.g., "last_30_days")
+
+      - name: Get Sentiment Data
+        parameters:
+          - asset_id: 
+              type: string
+              description: ID of the asset for sentiment analysis
+          - time_range: 
+              type: string
+              description: Time range for sentiment data (e.g., "last_30_days")
+
+  - name: News Agent
+    description: |
+      The News Agent accesses news articles related to specific assets or sources. It provides insights into the latest developments and discussions surrounding various assets.
+    tools:
+      - name: Get News Articles
+        parameters:
+          - asset_ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to filter news articles
+          - source_types: 
+              type: array
+              items: 
+                type: string
+              description: Types of sources to filter (e.g., News, Blog)
+          - sort: 
+              type: integer
+              description: Order articles by publish time (1 for ascending, 2 for descending)
+              default: 2
+          - page: 
+              type: integer
+              description: Page number for pagination
+              default: 1
+          - limit: 
+              type: integer
+              description: Number of results per page
+              default: 20
+
+      - name: Get News Sources
+        parameters:
+          - source_name: 
+              type: string
+              description: Case-sensitive text to search by source name
+          - page: 
+              type: integer
+              description: Page number for pagination
+              default: 1
+          - limit: 
+              type: integer
+              description: Number of results per page
+              default: 10
+
+      - name: Get News Assets
+        parameters:
+          - name_or_symbol: 
+              type: string
+              description: Text to search by asset name or symbol
+          - page: 
+              type: integer
+              description: Page number for pagination
+              default: 1
+          - limit: 
+              type: integer
+              description: Number of results per page
+              default: 20
+
+  - name: Market Agent
+    description: |
+      The Market Agent retrieves market data including all-time high (ATH), return on investment (ROI), and detailed asset information. It helps users evaluate asset performance and market trends.
+    tools:
+      - name: Get All-Time High (ATH) Data
+        parameters:
+          - ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to retrieve ATH data
+          - slugs: 
+              type: array
+              items: 
+                type: string
+              description: List of asset slugs
+          - category: 
+              type: string
+              description: Filter by asset category
+          - sector: 
+              type: string
+              description: Filter by asset sector
+          - tags: 
+              type: array
+              items: 
+                type: string
+              description: List of tags to filter by
+          - search: 
+              type: string
+              description: Fuzzy search for assets by name, slug, or symbol
+          - limit: 
+              type: integer
+              description: Maximum number of results to return
+              default: 20
+
+      - name: Get Return-on-Investment (ROI) Data
+        parameters:
+          - ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to retrieve ROI data
+          - slugs: 
+              type: array
+              items: 
+                type: string
+              description: List of asset slugs
+          - category: 
+              type: string
+              description: Filter by asset category
+          - sector: 
+              type: string
+              description: Filter by asset sector
+          - tags: 
+              type: array
+              items: 
+                type: string
+              description: List of tags to filter by
+          - search: 
+              type: string
+              description: Fuzzy search for assets by name, slug, or symbol
+          - limit: 
+              type: integer
+              description: Maximum number of results to return
+              default: 20
+
+      - name: Get Asset Details
+        parameters:
+          - ids: 
+              type: array
+              items: 
+                type: string
+              description: List of asset IDs to retrieve detailed information
+          - slugs: 
+              type: array
+              items: 
+                type: string
+              description: List of asset slugs
+
+  - name: Chat Agent
+    description: |
+      The Chat Agent provides additional context and information on how to use other agents effectively by requesting parameters in a converstional manner.

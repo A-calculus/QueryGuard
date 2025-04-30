@@ -1,0 +1,105 @@
+tools:
+  - name: get_messari_news_feed
+    description: Get news articles from the Messari API.
+    module_path: tools.news.messari_news_feed
+    function_name: get_messari_news_feed
+    parameters:
+      asset_ids:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset IDs to filter by (eg ["1e31218a-e44e-4285-820c-8282ee222035", "21c795f5-1bfd-40c3-858e-e9d7e820c6d0"])
+        required: false
+      source_ids:
+        type: array
+        items:
+          type: string
+        description: Optional list of source IDs to filter (eg ["a5185d4c-2afa-4d85-8842-e5b9ff8107a9", "21c795f5-1bfd-40c3-858e-e9d7e820c6d0"])
+        required: false
+      source_types:
+        type: array
+        items:
+          type: string
+        description: Optional list of source types to filter by (News, Blog, Forum)
+        required: false
+      sort:
+        type: integer
+        description: Sort by publish time (1 for ascending, 2 for descending)
+        default: 2
+        required: false
+      published_before:
+        type: integer
+        description: Optional timestamp in milliseconds UTC
+        required: false
+      published_after:
+        type: integer
+        description: Optional timestamp in milliseconds UTC
+        required: false
+      page:
+        type: integer
+        description: Page number for pagination
+        default: 1
+        required: false
+      limit:
+        type: integer
+        description: Number of results per page
+        default: 20
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of news articles with assets, publish time, source, title, URL, etc.
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_news_sources
+    description: Get a list of news sources monitored by Messari.
+    module_path: tools.news.messari_news_sources
+    function_name: get_messari_news_sources
+    parameters:
+      source_name:
+        type: string
+        description: Optional case-sensitive text to search by source name (eg Aave Blog, CoinDesk)
+        required: false
+      page:
+        type: integer
+        description: Page number for pagination
+        default: 1
+        required: false
+      limit:
+        type: integer
+        description: Number of results per page
+        default: 10
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of sources with id, sourceName, and sourceType
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_news_assets
+    description: Get a list of assets that have been tagged in news articles.
+    module_path: tools.news.messari_news_assets
+    function_name: get_messari_news_assets
+    parameters:
+      name_or_symbol:
+        type: string
+        description: Optional case-sensitive text to search by asset name or symbol (eg name can be 0Chain, slug can be 0chain-1 and its symbol is ZCN)
+        required: false
+      page:
+        type: integer
+        description: Page number for pagination
+        default: 1
+        required: false
+      limit:
+        type: integer
+        description: Number of results per page
+        default: 20
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of assets with id, name, slug, and symbol
+    raises:
+      - error: Exception
+        description: If the API response indicates an error 

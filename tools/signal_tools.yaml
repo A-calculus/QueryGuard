@@ -1,0 +1,161 @@
+tools:
+  - name: get_messari_signal_topics
+    description: Get a list of topics sorted by specified ranking algorithm.
+    module_path: tools.signal.messari_signal_topics
+    function_name: get_messari_signal_topics
+    parameters:
+      sort:
+        type: string
+        description: Sorting algorithm ("trending", "new", or "top")
+        default: "trending"
+        required: true
+      classes:
+        type: array
+        items:
+          type: string
+        description: List of classes to filter topics
+        required: false
+      asset_ids:
+        type: array
+        items:
+          type: string
+        description: List of asset IDs to filter topics
+        required: false
+      page:
+        type: integer
+        description: Page number for pagination
+        default: 1
+        required: false
+      limit:
+        type: integer
+        description: Number of results per page
+        default: 10
+        required: false
+    returns:
+      type: string
+      description: JSON string containing array of topic objects with id, name, slug, rank, mindshare scores, and volume metrics
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_topics_daily
+    description: Get historical data on topics over a specified time range.
+    module_path: tools.signal.messari_signal_topics
+    function_name: get_messari_signal_topics_daily
+    parameters:
+      start_time:
+        type: string
+        description: Start time in RFC3339 format (e.g., 2023-06-01T00:00:00Z)
+        required: true
+      end_time:
+        type: string
+        description: End time in RFC3339 format (e.g., 2023-06-03T00:00:00Z)
+        required: true
+    returns:
+      type: string
+      description: JSON string containing historical topic data points and schemas
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_topic_classes
+    description: Get a list of available classes for filtering topics.
+    module_path: tools.signal.messari_signal_topics
+    function_name: get_messari_signal_topic_classes
+    returns:
+      type: string
+      description: JSON string containing available topic classes
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_asset_by_id
+    description: Get a specific asset by its ID or slug.
+    module_path: tools.signal.messari_signal_assets
+    function_name: get_messari_signal_asset_by_id
+    parameters:
+      asset_id:
+        type: string
+        description: The ID or slug of the asset to retrieve (eg ethereum or use the id 21c795f5-1bfd-40c3-858e-e9d7e820c6d0)
+        required: true
+    returns:
+      type: string
+      description: JSON string containing asset details including id, name, symbol, slug, mindshare, and sentiment data
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_asset_mindshare
+    description: Get a specific asset's mindshare over time.
+    module_path: tools.signal.messari_signal_assets
+    function_name: get_messari_signal_asset_mindshare
+    parameters:
+      asset_id:
+        type: string
+        description: The ID or slug of the asset (eg ethereum or use the id 21c795f5-1bfd-40c3-858e-e9d7e820c6d0)
+        required: true
+    returns:
+      type: string
+      description: JSON string containing time series data of mindshare metrics including rank, percentage, and score
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_asset_sentiment
+    description: Get sentiment data for a specific asset.
+    module_path: tools.signal.messari_signal_sentiment
+    function_name: get_messari_signal_asset_sentiment
+    parameters:
+      asset_id:
+        type: string
+        description: The ID or slug of the asset (eg ethereum or use the id 21c795f5-1bfd-40c3-858e-e9d7e820c6d0)
+        required: true
+    returns:
+      type: string
+      description: JSON string containing asset sentiment data including scores, post percentages, and tweet volume
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_asset_sentiment_time_series
+    description: Get sentiment data for a specific asset over time.
+    module_path: tools.signal.messari_signal_sentiment
+    function_name: get_messari_signal_asset_sentiment_time_series
+    parameters:
+      asset_id:
+        type: string
+        description: The ID or slug of the asset
+        required: true
+      granularity:
+        type: string
+        description: Time granularity ("1h" for hourly, "1d" for daily)
+        default: "1d"
+        required: false
+    returns:
+      type: string
+      description: JSON string containing time series data of sentiment metrics including scores, ranks, post percentages, and tweet volume
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_signal_assets
+    description: Get a list of assets sorted by mindshare.
+    module_path: tools.signal.messari_signal_assets
+    function_name: get_messari_signal_assets
+    parameters:
+      page:
+        type: integer
+        description: Page number for pagination
+        default: 1
+        required: false
+      limit:
+        type: integer
+        description: Number of results per page
+        default: 20
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of assets with mindshare data and pagination metadata
+    raises:
+      - error: Exception
+        description: If the API response indicates an error 

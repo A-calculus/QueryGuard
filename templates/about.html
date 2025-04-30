@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryGuard - API Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #001F3F;
+            --secondary-color: #003366;
+            --background-color: #F4F4F4;
+            --card-background: #F4F4F4;
+            --text-color: #333333;
+            --border-color: #708090;
+            --highlight-color: #008080;
+            --hover-color: #FF6F61;
+            --code-background: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-section h1 {
+            color: var(--background-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--highlight-color);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .content-area {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .code-block {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        .endpoint {
+            background-color: var(--code-background);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--highlight-color);
+            color: white;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+
+        .example {
+            margin: 1.5rem 0;
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--highlight-color);
+        }
+
+        .project-description p {
+            margin-bottom: 1rem;
+        }
+
+        .project-description ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .project-description li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="/static/logo.png" alt="QueryGuard Logo">
+                <h1>QueryGuard</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="" class="nav-link">Dashboard</a>
+                <a href="/about" class="nav-link">API Documentation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-area">
+            <h2>About QueryGuard</h2>
+            <div class="project-description">
+                <p>QueryGuard is your AI-powered cryptocurrency analysis platform, designed to help both novice and experienced investors navigate the complex crypto market with confidence. Our platform combines advanced AI technology with comprehensive market data to provide real-time insights, market sentiment analysis, and trading signals.</p>
+                
+                <p>Key Features:</p>
+                <ul>
+                    <li>Real-time market analysis and price tracking</li>
+                    <li>AI-powered news and sentiment analysis</li>
+                    <li>Technical trading signals and indicators</li>
+                    <li>Comprehensive market reports and insights</li>
+                    <li>Fraud detection and risk analysis</li>
+                </ul>
+
+                <p>Whether you're researching a specific asset or analyzing market trends, QueryGuard provides the tools and insights you need to make informed investment decisions.</p>
+            </div>
+
+            <h2>API Documentation</h2>
+            <p>QueryGuard provides a simple API endpoint to interact with our AI-powered cryptocurrency analysis platform.</p>
+
+            <h3>Base URL</h3>
+            <p>All API requests should be made to:</p>
+            <div class="endpoint">{{ base_url }}</div>
+
+            <h3>API Endpoint</h3>
+            <div class="endpoint">
+                <span class="method">POST</span> /api/query
+            </div>
+
+            <h3>Analysis Types</h3>
+            <p>QueryGuard supports different types of analysis, each providing specific insights into the cryptocurrency market:</p>
+
+            <div class="example">
+                <div class="example-title">Market Analysis</div>
+                <p>Market analysis provides insights into price movements, trading volumes, market capitalization, and overall market trends. This type of analysis helps understand the current state of the market and identify potential opportunities or risks.</p>
+                <div class="code-block">
+                    <pre>{
+    "message": "What is the current market sentiment for Bitcoin?",
+    "type": "market_analysis"
+}</pre>
+                </div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">News Analysis</div>
+                <p>News analysis focuses on recent news articles, social media trends, and public sentiment about specific cryptocurrencies. It helps track market-moving events, regulatory changes, and community sentiment that might affect prices.</p>
+                <div class="code-block">
+                    <pre>{
+    "message": "What are the latest news trends for Ethereum?",
+    "type": "news_analysis"
+}</pre>
+                </div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Signal Analysis</div>
+                <p>Signal analysis provides technical indicators and trading signals based on price patterns, volume analysis, and other technical metrics. This type of analysis is particularly useful for traders looking for entry and exit points.</p>
+                <div class="code-block">
+                    <pre>{
+    "message": "What are the current trading signals for Solana?",
+    "type": "signal_analysis"
+}</pre>
+                </div>
+            </div>
+
+            <h3>Request Format</h3>
+            <p>Send a POST request with a JSON body containing your query. The query should be structured based on the type of analysis you want:</p>
+
+            <h3>Response Format</h3>
+            <p>The API will respond with a JSON object containing the analysis results:</p>
+            <div class="code-block">
+                <pre>{
+    "status": "success",
+    "response": "Detailed analysis response here..."
+}</pre>
+            </div>
+
+            <h3>Error Handling</h3>
+            <p>In case of an error, the API will return a JSON object with an error message:</p>
+            <div class="code-block">
+                <pre>{
+    "error": "Error message description"
+}</pre>
+            </div>
+
+            <h3>Example Usage with cURL</h3>
+            <div class="code-block">
+                <pre>curl -X POST {{ base_url }}/api/query \
+-H "Content-Type: application/json" \
+-d '{
+    "message": "What is the current market sentiment for Bitcoin?",
+    "type": "market_analysis"
+}'</pre>
+            </div>
+
+            <h3>Example Usage with Python</h3>
+            <div class="code-block">
+                <pre>import requests
+import json
+
+url = "{{ base_url }}/api/query"
+data = {
+    "message": "What is the current market sentiment for Bitcoin?",
+    "type": "market_analysis"
+}
+
+response = requests.post(url, json=data)
+result = response.json()
+
+if response.status_code == 200:
+    print(result["response"])
+else:
+    print(f"Error: {result['error']}")</pre>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 

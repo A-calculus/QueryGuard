@@ -1,0 +1,118 @@
+tools:
+  - name: get_messari_asset_ath
+    description: Get All-Time High (ATH) data for specified assets from the Messari API.
+    module_path: tools.market.messari_asset_ath
+    function_name: get_messari_asset_ath
+    parameters:
+      ids:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset IDs
+        required: false
+      slugs:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset slugs (defaults to bitcoin, ethereum if neither ids nor slugs provided)
+        required: false
+      category:
+        type: string
+        description: Optional filter by asset category (eg Cryptocurrency)
+        required: false
+      sector:
+        type: string
+        description: Optional filter by asset sector (eg Cryptocurrency)
+        required: false
+      tags:
+        type: array
+        items:
+          type: string
+        description: Optional list of tags to filter by (eg ["Proof-of-Work", "EVM"])
+        required: false
+      search:
+        type: string
+        description: Optional fuzzy search for assets by name, slug, or symbol(eg BTC)
+        required: false
+      limit:
+        type: integer
+        description: Maximum number of results to return
+        default: 20
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of assets with their ATH data
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_asset_roi
+    description: Get Return-on-Investment (ROI) data for specified assets from the Messari API.
+    module_path: tools.market.messari_asset_roi
+    function_name: get_messari_asset_roi
+    parameters:
+      ids:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset IDs
+        required: false
+      slugs:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset slugs (defaults to bitcoin,ethereum if neither ids nor slugs provided)
+        required: false
+      category:
+        type: string
+        description: Optional filter by asset category (eg Networks)
+        required: false
+      sector:
+        type: string
+        description: Optional filter by asset sector (eg Smart Contract Platform)
+        required: false
+      tags:
+        type: array
+        items:
+          type: string
+        description: Optional list of tags to filter by
+        required: false
+      search:
+        type: string
+        description: Optional fuzzy search for assets by name, slug, or symbol
+        required: false
+      limit:
+        type: integer
+        description: Maximum number of results to return
+        default: 20
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of assets with their ROI data
+    raises:
+      - error: Exception
+        description: If the API response indicates an error
+
+  - name: get_messari_asset_details
+    description: Get detailed information about specific assets from the Messari API.
+    module_path: tools.market.messari_asset_details
+    function_name: get_messari_asset_details
+    parameters:
+      ids:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset IDs (eg ["1e31218a-e44e-4285-820c-8282ee222035", "21c795f5-1bfd-40c3-858e-e9d7e820c6d0"])
+        required: false
+      slugs:
+        type: array
+        items:
+          type: string
+        description: Optional list of asset slugs (defaults to bitcoin, ethereum if neither ids nor slugs provided)
+        required: false
+    returns:
+      type: string
+      description: JSON string containing list of asset details including market data, qualitative information, supply information, ATH, and ROI
+    raises:
+      - error: Exception
+        description: If the API response indicates an error 
