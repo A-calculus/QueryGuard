@@ -310,6 +310,28 @@ class NewsAgent:
         {json.dumps(serializable_tools, indent=2)}
         """
 
+    def _get_mistral_response(self, messages: List[Dict[str, str]]) -> str:
+        """
+        Get a response from the Mistral model.
+        
+        Args:
+            messages (List[Dict[str, str]]): List of message dictionaries with 'role' and 'content'
+            
+        Returns:
+            str: The model's response
+        """
+        try:
+            response = self.client.chat(
+                model=self.config['model']['name'],
+                messages=messages,
+                temperature=self.config['model']['temperature'],
+                max_tokens=self.config['model']['max_tokens']
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            logger.error(f"Error getting Mistral response: {str(e)}")
+            raise
+
     def _create_graph(self) -> Graph:
         def decide_next_action(state: NewsState) -> NewsState:
             messages = state["messages"]

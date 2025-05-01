@@ -6,9 +6,10 @@ google-generativeai
 python-dotenv
 pyyaml
 mistralai>=0.0.7
-flask
+flask[async]
 jinja2
 aiohttp
 protobuf
 tenacity
 gunicorn
+hypercorn

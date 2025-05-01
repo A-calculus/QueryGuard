@@ -18,8 +18,16 @@ class ChatAgent:
 
     async def __call__(self, messages: List[Dict[str, str]]) -> Dict[str, Any]:
         """Get completion from Messari AI chat endpoint."""
+        # Format messages according to Messari API requirements
+        formatted_messages = []
+        for msg in messages:
+            formatted_messages.append({
+                "role": msg["role"],
+                "content": msg["content"]
+            })
+        
         params = {
-            "messages": messages,
+            "messages": formatted_messagesmessages,
             "verbosity": "verbose",
             "response_format": "plaintext",
             "inline_citations": True,

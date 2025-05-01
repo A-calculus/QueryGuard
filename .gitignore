@@ -27,7 +27,9 @@ logs/
 # Testing
 coverage/
 test.yaml
-templates/reqirements
+templates/reqirements.txt
+test_query.py
+r.txt
 
 # TypeScript
 *.tsbuildinfo
