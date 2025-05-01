@@ -13,12 +13,12 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     """Render the main webpage."""
-    return render_template("about.html")
+    return render_template("index.html")
 
 @app.route('/about')
 def about():
     """Render the about page with API documentation."""
-    base_url = os.getenv('BASE_URL')
+    base_url = os.getenv('BASE_URL', request.host_url.rstrip('/'))
     return render_template("about.html", base_url=base_url)
 
 @app.route('/api/query', methods=['POST'])
