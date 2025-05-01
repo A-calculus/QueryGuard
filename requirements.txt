@@ -5,7 +5,7 @@ langchain-community
 google-generativeai
 python-dotenv
 pyyaml
-mistralai>=0.0.12
+mistralai==0.0.12
 flask[async]
 jinja2
 aiohttp

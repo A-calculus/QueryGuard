@@ -62,6 +62,7 @@ wheels/
 analytics_env/
 venv/
 ENV/
+analytics_env_new
 
 # IDE
 .idea/
